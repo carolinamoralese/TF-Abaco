@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+    const activeStyle = 
     return (
         <nav>
             <ul>
@@ -20,7 +21,7 @@ const Navbar = () => {
             </ul>
             <ul>
                 <li>
-                    <NavLink to='/i'>Rendimientos</NavLink>
+                    <NavLink to='/indicators'>Rendimientos</NavLink>
                 </li>
             </ul>
 
