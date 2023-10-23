@@ -1,44 +1,29 @@
-/* import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg' */
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import {createHashRouter, RouterProvider} from 'react-router-dom'
 import {Login} from './Pages/Login.jsx'
+import {Home} from './Pages/Home.jsx'
 import './App.css'
 
 
 function App() {
-   const router = createHashRouter([
-     {
-       path: '/',
-       element: <Login />
-     }
-   ])
-/* const [count, setCount] = useState(0)
+  const router = createHashRouter([
+      {
+        path: '/',
+        element: <Login />
+      },
+      {
+        path: '/home',
+        element: <Home />
+      }
+    ])
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )*/
+    ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <RouterProvider router={router}></RouterProvider>
+      {/* <App /> */}
+  </React.StrictMode>,
+)
 } 
 
 export default App

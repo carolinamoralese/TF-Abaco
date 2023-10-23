@@ -1,7 +1,7 @@
 // import banner from "..assets/UHH_5211";
 
-export function Login(){
-   return (
+export function Login() {
+  return (
     <main>
         <section id="section1">
             {/* <img src={banner} alt="banner" ></img> */}
@@ -15,7 +15,7 @@ export function Login(){
 
         </section>
     </main>
-   )  
+  )  
 } 
 
 //        <section class="Auth">
