@@ -10,17 +10,17 @@ const Navbar = () => {
             </ul>
             <ul>
                 <li>
-                    <NavLink to='/constancias'>Constancias</NavLink>
+                    <NavLink to='/records'>Constancias</NavLink>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <NavLink to='/certificados'>Certificados</NavLink>
+                    <NavLink to='/certificates'>Certificados</NavLink>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <NavLink to='/rendimientos'>Rendimientos</NavLink>
+                    <NavLink to='/i'>Rendimientos</NavLink>
                 </li>
             </ul>
 
