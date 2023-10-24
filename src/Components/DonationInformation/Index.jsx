@@ -1,6 +1,27 @@
+import { useState, useEffect } from "react";
+import { obtenerDocumentos } from "../../servicios/servicios";
+
 export function DonationInformation() {
+  const [documentos, setDocumentos] = useState([]);
+
+  const propiedadFechaDeExpedicion = "Fecha Expedición";
+  const propiedadConsecutivo = "Consecutivo";
+  const propiedadEmpresa = "EMPRESA ";
+  const propiedadTipoDeCertificado = "Tipo_Certificado";
+
+  useEffect(() => {
+    obtenerDocumentos()
+      .then((info) => {
+        setDocumentos(info);
+        console.log(obtenerDocumentos, 90);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
-    <div className="flex space-x-4 mt-8 bg-gray-200 bg-opacity-50 font-bold p-4">
+    <div className="flex justify-end mt-8 bg-gray-200 bg-opacity-50 font-bold p-4">
       <table className="min-w-full divide-y divide-gray-200">
         <thead>
           <tr>
@@ -21,23 +42,36 @@ export function DonationInformation() {
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap">12-10-2023</td>
-            <td className="px-6 py-4 whitespace-nowrap">XX -2023</td>
-            <td className="px-6 py-4 whitespace-nowrap">Eficacia S.A</td>
-            <td className="px-6 py-4 whitespace-nowrap">Concepto ...</td>
-            <td className="px-6 py-4 whitespace-nowrap">Ver- Editar</td>
-          </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap">14-10-23</td>
-            <td className="px-6 py-4 whitespace-nowrap">XX -2023</td>
-            <td className="px-6 py-4 whitespace-nowrap">Colvanes SAS</td>
-            <td className="px-6 py-4 whitespace-nowrap">Concepto ...</td>
-            <td className="px-6 py-4 whitespace-nowrap">Ver- Editar</td>
-          </tr>
-        </tbody>
+
+        {documentos.map((documento, index) => (
+          // console.log(documento)
+          <tbody className="bg-white divide-y divide-gray-200" key={index}>
+            {documento[propiedadFechaDeExpedicion] &&
+            documento[propiedadConsecutivo] &&
+            documento[propiedadEmpresa] &&
+            documento[propiedadTipoDeCertificado] ? (
+              <tr>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {documento[propiedadFechaDeExpedicion]}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {documento[propiedadConsecutivo]}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {documento[propiedadEmpresa]}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {documento[propiedadTipoDeCertificado]}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">Ver- Editar</td>
+              </tr>
+            ) : (
+              <tr></tr>
+            )}
+          </tbody>
+        ))}
       </table>
+      
     </div>
   );
 }

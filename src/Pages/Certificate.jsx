@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Layout from "../Components/Layout/Index";
 import { CreateButton } from "../Components/Button/Index";
 import { DonationInformation } from "../Components/DonationInformation/Index";
@@ -12,15 +12,19 @@ export function Certificate() {
     setSelectedOption(option);
   };
 
+  //Peticion a la api para mostrar los documentos
+
+
   const certificateStyle = {
     backgroundImage: `url(${Group})`,
-    backgroundSize: "cover",
+    backgroundSize: "100% 100%",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     width: "80%",
     marginTop: "-10%",
     height: "400px"
   };
+  
 
   return (
 
@@ -42,12 +46,20 @@ export function Certificate() {
               text="Aceptadas"
             ></CreateButton>
           </div>
-          <div>
+          <div className="mr-4">
             <CreateButton
               colorClass="bg-amarillo h-20"
               selected={selectedOption === "Firmadas"}
               onClick={() => handleButtonClick("Firmadas")}
               text="Firmadas"
+            ></CreateButton>
+          </div>
+          <div className="mr-4">
+            <CreateButton
+              colorClass="bg-gris-oscuro h-20"
+              selected={selectedOption === "Rechazadas"}
+              onClick={() => handleButtonClick("Rechazadas")}
+              text="Rechazadas"
             ></CreateButton>
           </div>
         </div>
