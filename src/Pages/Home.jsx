@@ -1,10 +1,10 @@
-
+import Layout from "../Components/Layout/Index";
 
 export function Home() {
   return (
-    <>
-    <p>Hola</p>
-    </>
+    <Layout>
+    <p>Inicio</p>
+    </Layout>
     );
 
 }
