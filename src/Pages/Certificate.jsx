@@ -1,43 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Layout from "../Components/Layout/Index";
 import { CreateButton } from "../Components/Button/Index";
+import { DonationInformation } from "../Components/DonationInformation/Index";
+import Group from "../assets/Group.png";
+
 
 export function Certificate() {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState("");
 
   const handleButtonClick = (option) => {
     setSelectedOption(option);
   };
 
+  const certificateStyle = {
+    backgroundImage: `url(${Group})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    width: "80%",
+    marginTop: "-10%",
+    height: "400px"
+  };
+
   return (
-    <Layout>
-      <p>Certificados</p>
-      <div className="flex">
-        <div className="mr-4">
-          <CreateButton
-            colorClass="bg-f58634 bg-orange-600 h-20"
-            selected={selectedOption === 'Pendientes'}
-            onClick={() => handleButtonClick('Pendientes')}
-            text="Pendientes"
-          ></CreateButton>
-        </div>
-        <div className="mr-4">
-          <CreateButton
-            colorClass="bg-8cc63f bg-green-600 h-20"
-            selected={selectedOption === 'Aceptadas'}
-            onClick={() => handleButtonClick('Aceptadas')}
-            text="Aceptadas"
-          ></CreateButton>
+
+      <div style={certificateStyle} className="relative mt-0 flex flex-col items-center ml-40">
+        <div className="flex justify-center"> {/* Usa flex y justify-center para centrar horizontalmente */}
+          <div className="mr-4">
+            <CreateButton
+              colorClass="bg-naranja h-20"
+              selected={selectedOption === "Pendientes"}
+              onClick={() => handleButtonClick("Pendientes")}
+              text="Pendientes"
+            ></CreateButton>
+          </div>
+          <div className="mr-4">
+            <CreateButton
+              colorClass="bg-verde-claro h-20"
+              selected={selectedOption === "Aceptadas"}
+              onClick={() => handleButtonClick("Aceptadas")}
+              text="Aceptadas"
+            ></CreateButton>
+          </div>
+          <div>
+            <CreateButton
+              colorClass="bg-amarillo h-20"
+              selected={selectedOption === "Firmadas"}
+              onClick={() => handleButtonClick("Firmadas")}
+              text="Firmadas"
+            ></CreateButton>
+          </div>
         </div>
         <div>
-          <CreateButton
-            colorClass="bg-d2de38 bg-lime-600 h-20"
-            selected={selectedOption === 'Firmadas'}
-            onClick={() => handleButtonClick('Firmadas')}
-            text="Firmadas"
-          ></CreateButton>
+          <DonationInformation></DonationInformation>
         </div>
       </div>
-    </Layout>
+    
   );
 }
