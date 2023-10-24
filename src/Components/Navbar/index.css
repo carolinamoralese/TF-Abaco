@@ -1,0 +1,7 @@
+.active-link {
+    background-color: #8cc63f; /* Fondo de color verde */
+    color: white !important; /* Color de texto blanco */
+    border-radius: 20px; /* Borde redondeado */
+    padding: 10px 20px; /* Espaciado horizontal y vertical */
+  }
+  
