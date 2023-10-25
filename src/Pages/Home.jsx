@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { Barrasuperior } from "../Components/Navbar/index";
 import { Navbar } from "../Components/Navbar/index";
 import Group from "../assets/Group.png";
@@ -81,7 +82,7 @@ export function Home() {
               certificados pendientes de revisar, por firmar y las aceptadas.
             </p>
             <p className="text-base text-blue-700">
-              <a href="#" className="text-blue-600 underline">Puedes leer más dando click aquí</a>
+              <NavLink to="/home-info" className="text-blue-600 underline">Puedes leer más dando click aquí</NavLink>
             </p>
             <p className="text-base text-gray-700">
               En este video te contamos más de la emisión de constancias y certificados
