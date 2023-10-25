@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import logoColor from "../../assets/logocolor.png";
-import cosecha from "../../assets/Cosecha2.jpg";
+import cosecha from "../../assets/EDITABL-PLATAFORMA-10.png";
 import hoja from "../../assets/hoja.png";
 import './index.css'
 
