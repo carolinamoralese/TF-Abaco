@@ -4,7 +4,7 @@ import { Barrasuperior } from "../Components/Navbar/Index";
 import { Navbar } from "../Components/Navbar/Index";
 import { CreateButton } from "../Components/Button/Button";
 import { DonationInformation } from "../Components/DonationInformation/Index";
-import { obtenerDocumentos } from "../servicios/servicios";
+import { obtenerCertificados } from "../servicios/servicios";
 import Group from "../assets/Group.png";
 
 export function Certificate() {
@@ -17,7 +17,7 @@ export function Certificate() {
   const rolUsuarioRevisorFiscal = "R_Fiscal";
 
   useEffect(() => {
-    obtenerDocumentos()
+    obtenerCertificados()
       .then((documentos) => {
         setDocumentos(documentos);
       })
@@ -39,18 +39,18 @@ export function Certificate() {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) => documento[rolUsuario] === ""
           );
-        } else if (estado == "Aceptadas") {
+        } else if (estado == "Aceptados") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) => documento[rolUsuario].toUpperCase() === "SI"
           );
-        } else if (estado == "Firmadas") {
+        } else if (estado == "Firmados") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) =>
               documento[rolUsuariologistica].toUpperCase() === "SI" &&
               documento[rolUsuarioCotabilidad].toUpperCase() === "SI" &&
               documento[rolUsuarioRevisorFiscal].toUpperCase() === "SI"
           );
-        } else if (estado == "Rechazadas") {
+        } else if (estado == "Rechazados") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) =>
               documento[rolUsuariologistica].toUpperCase() === "NO" ||
@@ -67,20 +67,20 @@ export function Certificate() {
               documento[rolUsuariologistica].toUpperCase() === "SI" &&
               documento[rolUsuarioCotabilidad] === ""
           );
-        } else if (estado == "Aceptadas") {
+        } else if (estado == "Aceptados") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) =>
               documento[rolUsuariologistica].toUpperCase() === "SI" &&
               documento[rolUsuarioCotabilidad].toUpperCase() === "SI"
           );
-        } else if (estado == "Firmadas") {
+        } else if (estado == "Firmados") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) =>
               documento[rolUsuariologistica].toUpperCase() === "SI" &&
               documento[rolUsuarioCotabilidad].toUpperCase() === "SI" &&
               documento[rolUsuarioRevisorFiscal].toUpperCase() === "SI"
           );
-        } else if (estado == "Rechazadas") {
+        } else if (estado == "Rechazados") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) =>
               documento[rolUsuariologistica].toUpperCase() === "NO" ||
@@ -98,21 +98,21 @@ export function Certificate() {
               documento[rolUsuarioCotabilidad].toUpperCase() === "SI" &&
               documento[rolUsuarioRevisorFiscal] === ""
           );
-        } else if (estado == "Aceptadas") {
+        } else if (estado == "Aceptados") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) =>
               documento[rolUsuariologistica].toUpperCase() === "SI" &&
               documento[rolUsuarioCotabilidad].toUpperCase() === "SI" &&
               documento[rolUsuarioRevisorFiscal].toUpperCase() === "SI"
           );
-        } else if (estado == "Firmadas") {
+        } else if (estado == "Firmados") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) =>
               documento[rolUsuariologistica].toUpperCase() === "SI" &&
               documento[rolUsuarioCotabilidad].toUpperCase() === "SI" &&
               documento[rolUsuarioRevisorFiscal].toUpperCase() === "SI"
           );
-        } else if (estado == "Rechazadas") {
+        } else if (estado == "Rechazados") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) =>
               documento[rolUsuariologistica].toUpperCase() === "NO" ||
@@ -160,7 +160,7 @@ export function Certificate() {
       <div className="flex justify-center">
         <div className="mr-4">
           <CreateButton
-            colorClass="bg-naranja h-20"
+            colorClass="bg-naranja w-fit h-20"
             selected={selectedOption === "Pendientes"}
             onClick={() => handleButtonClick("Pendientes")}
             text="Pendientes"
@@ -168,26 +168,26 @@ export function Certificate() {
         </div>
         <div className="mr-4">
           <CreateButton
-            colorClass="bg-verde-claro h-20"
-            selected={selectedOption === "Aceptadas"}
-            onClick={() => handleButtonClick("Aceptadas")}
-            text="Aceptadas"
+            colorClass="bg-verde-claro w-fit h-20"
+            selected={selectedOption === "Aceptados"}
+            onClick={() => handleButtonClick("Aceptados")}
+            text="Aceptados"
           ></CreateButton>
         </div>
         <div className="mr-4">
           <CreateButton
-            colorClass="bg-amarillo h-20"
-            selected={selectedOption === "Firmadas"}
-            onClick={() => handleButtonClick("Firmadas")}
-            text="Firmadas"
+            colorClass="bg-amarillo w-fit h-20"
+            selected={selectedOption === "Firmados"}
+            onClick={() => handleButtonClick("Firmados")}
+            text="Firmados"
           ></CreateButton>
         </div>
         <div className="mr-4">
           <CreateButton
-            colorClass="bg-gris-oscuro h-20"
-            selected={selectedOption === "Rechazadas"}
-            onClick={() => handleButtonClick("Rechazadas")}
-            text="Rechazadas"
+            colorClass="bg-gris-claro w-fit h-20"
+            selected={selectedOption === "Rechazados"}
+            onClick={() => handleButtonClick("Rechazados")}
+            text="Rechazados"
           ></CreateButton>
         </div>
       </div>
