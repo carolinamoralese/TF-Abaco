@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Layout from "../Components/Layout/Index";
+import { Barrasuperior } from "../Components/Navbar/Index";
 import { CreateButton } from "../Components/Button/Index";
 import { DonationInformation } from "../Components/DonationInformation/Index";
 import { obtenerDocumentos } from "../servicios/servicios";
@@ -139,18 +140,20 @@ export function Certificate() {
 
   const certificateStyle = {
     backgroundImage: `url(${Group})`,
-    backgroundSize: "100% 100%",
+    backgroundSize: "80% 100%",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     width: "80%",
-    marginTop: "-10%",
+    marginTop: "-30%",
     height: "400px",
   };
 
   return (
-    <div
+    <div>
+      <Barrasuperior />
+<div
       style={certificateStyle}
-      className="relative mt-0 flex flex-col items-center ml-40"
+      className="relative mt-5 flex flex-col items-center ml-40"
     >
       <div className="flex justify-center">
         <div className="mr-4">
@@ -192,5 +195,7 @@ export function Certificate() {
         ></DonationInformation>
       </div>
     </div>
+    </div>
+    
   );
 }
