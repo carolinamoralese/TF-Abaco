@@ -1,6 +1,7 @@
 import React from "react";
 import { MDBDataTableV5 } from "mdbreact";
 
+
 export function DonationInformation({ documentos }) {
   documentos.map((documento) => {
     documento.accion = <a href="#">Ver - Editar</a>;
@@ -44,8 +45,8 @@ export function DonationInformation({ documentos }) {
   };
 
   return (
-    <div className="mt-8">
-      <MDBDataTableV5 striped bordered small data={data} />;
+    <div className="mt-8 bg-blanco">
+      <MDBDataTableV5 striped bordered small data={data} />
     </div>
   )
 }

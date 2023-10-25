@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import Layout from "../Components/Layout/Index";
+import { useState, useEffect } from "react";;
 import { Barrasuperior } from "../Components/Navbar/Index";
 import { Navbar } from "../Components/Navbar/Index";
 import { CreateButton } from "../Components/Button/Button";
 import { DonationInformation } from "../Components/DonationInformation/Index";
 import { obtenerCertificados } from "../servicios/servicios";
+import { modificarEstadoCertificado } from "../servicios/servicios";
 import Group from "../assets/Group.png";
 
 export function Certificate() {
@@ -17,6 +17,7 @@ export function Certificate() {
   const rolUsuarioRevisorFiscal = "R_Fiscal";
 
   useEffect(() => {
+    
     obtenerCertificados()
       .then((documentos) => {
         setDocumentos(documentos);

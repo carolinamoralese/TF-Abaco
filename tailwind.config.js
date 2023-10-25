@@ -14,6 +14,7 @@ export default {
       'amarillo': '#d2de38',
       'naranja': '#f58634',
       'negro': '#272323',
+      'blanco':' #FFFFFF',
     },
     extend: {
       screens: {
