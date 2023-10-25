@@ -37,7 +37,7 @@ function AppRoutes() {
   function App(){
     return(
       <BrowserRouter>
-      <Navbar />
+      {/* <Navbar /> */}
       <AppRoutes />
       
       </BrowserRouter>

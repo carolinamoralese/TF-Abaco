@@ -6,14 +6,22 @@ export default {
   ],
   theme: {
     colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      'naranja': '#f58634',
+      'grisMuyClaro': '#E6E6E6',
+      'gris-oscuro':'#4d4d4d',
+      'verde-oscuro': '#065624',
       'verde-claro': '#8cc63f',
       'amarillo': '#d2de38',
-      'gris-oscuro':'#4d4d4d'
+      'naranja': '#f58634',
+      'negro': '#272323',
     },
-    extend: {},
+    extend: {
+      screens: {
+        'sm': '640px',
+        'md': '1080px', // Cambia este valor
+        'lg': '1280px',
+        // ...
+      },
+    },
   },
   plugins: [],
 }

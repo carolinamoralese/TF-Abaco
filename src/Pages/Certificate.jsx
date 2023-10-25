@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Layout from "../Components/Layout/Index";
 import { Barrasuperior } from "../Components/Navbar/Index";
-import { CreateButton } from "../Components/Button/Index";
+import { CreateButton } from "../Components/Button/Button";
 import { DonationInformation } from "../Components/DonationInformation/Index";
 import { obtenerDocumentos } from "../servicios/servicios";
 import Group from "../assets/Group.png";
