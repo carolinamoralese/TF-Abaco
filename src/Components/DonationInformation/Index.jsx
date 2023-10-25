@@ -47,5 +47,5 @@ export function DonationInformation({ documentos }) {
     <div className="mt-8">
       <MDBDataTableV5 striped bordered small data={data} />;
     </div>
-  );
+  )
 }
