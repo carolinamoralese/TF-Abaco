@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Layout from "../Components/Layout/Index";
 import { Barrasuperior } from "../Components/Navbar/Index";
+import { Navbar } from "../Components/Navbar/Index";
 import { CreateButton } from "../Components/Button/Button";
 import { DonationInformation } from "../Components/DonationInformation/Index";
 import { obtenerDocumentos } from "../servicios/servicios";
@@ -151,6 +152,7 @@ export function Certificate() {
   return (
     <div>
       <Barrasuperior />
+      <Navbar />
 <div
       style={certificateStyle}
       className="relative mt-5 flex flex-col items-center ml-40"
@@ -197,5 +199,5 @@ export function Certificate() {
     </div>
     </div>
     
-  );
+  )
 }

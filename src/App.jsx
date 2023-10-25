@@ -4,7 +4,6 @@ import {Home} from './Pages/Home.jsx'
 import { Records } from './Pages/Records.jsx'
 import { Certificate } from './Pages/Certificate.jsx'
 import { Indicators } from './Pages/Indicators.jsx'
-import { Navbar } from './Components/Navbar/index.jsx'
 import './App.css'
 
 
@@ -37,7 +36,6 @@ function AppRoutes() {
   function App(){
     return(
       <BrowserRouter>
-      {/* <Navbar /> */}
       <AppRoutes />
       
       </BrowserRouter>
