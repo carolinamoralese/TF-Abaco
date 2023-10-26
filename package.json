@@ -12,7 +12,9 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.2",
     "dotenv": "^16.3.1",
+    "firebase": "^10.5.0",
     "mdbreact": "^5.2.0",
+    "pdfmake": "^0.2.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0",
