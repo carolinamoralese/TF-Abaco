@@ -1,7 +1,10 @@
 import { VARIABLES_ENTORNO } from "../../env";
 
 export const obtenerCertificados = () => {
-    return fetch(VARIABLES_ENTORNO.REACT_APP_URL_OBTENER_CERTIFICADOS)
+    let parametros = new URLSearchParams({
+        key: VARIABLES_ENTORNO.REACT_APP_KEY_OBTENER_CERTIFICADOS,
+    })
+    return fetch(VARIABLES_ENTORNO.REACT_APP_URL_OBTENER_CERTIFICADOS+"?"+parametros)
     .then((respuesta) => respuesta.json())
     .catch((error) => {
         console.log(error)
@@ -51,7 +54,7 @@ export const modificarEstadoCertificadoContabilidad = (nuevoEstado, consecutivo)
 
     })
     return fetch(VARIABLES_ENTORNO.REACT_APP_URL_MODIFICAR_ESTADOS_CERTIFICADOS_CONTABILIDAD+"?"+parametros, opciones)
-    .then((respuesta) => respuesta.json())
+    .then((respuesta) => respuesta)
     .catch((error) => {
         console.log(error)
         throw error.mensaje;
@@ -70,14 +73,14 @@ export const modificarEstadoCertificadoRevisorFiscal = (nuevoEstado, consecutivo
 
     })
     return fetch(VARIABLES_ENTORNO.REACT_APP_URL_MODIFICAR_ESTADOS_CERTIFICADOS_REVISOR_FISCAL+"?"+parametros, opciones)
-    .then((respuesta) => respuesta.json())
+    .then((respuesta) => respuesta)
     .catch((error) => {
         console.log(error)
         throw error.mensaje;
     })
 }
 
-export const modificarEstadoConstaciaLogistica = (nuevoEstado, consecutivo) => {
+export const modificarEstadoConstanciaLogistica = (nuevoEstado, consecutivo) => {
     let opciones = {
         method: "POST",
         
@@ -89,7 +92,7 @@ export const modificarEstadoConstaciaLogistica = (nuevoEstado, consecutivo) => {
 
     })
     return fetch(VARIABLES_ENTORNO.REACT_APP_URL_MODIFICAR_ESTADOS_CONSTANCIAS_LOGISTICA+"?"+parametros, opciones)
-    .then((respuesta) => respuesta.json())
+    .then((respuesta) => console.log(respuesta))
     .catch((error) => {
         console.log(error)
         throw error.mensaje;

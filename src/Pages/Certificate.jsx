@@ -5,6 +5,8 @@ import { CreateButton } from "../Components/Button/Button";
 import { DonationInformation } from "../Components/DonationInformation/Index";
 import { obtenerCertificados } from "../servicios/servicios";
 import { modificarEstadoCertificadoLogistica } from "../servicios/servicios";
+import { modificarEstadoCertificadoContabilidad } from "../servicios/servicios";
+import { modificarEstadoCertificadoRevisorFiscal } from "../servicios/servicios";
 import Group from "../assets/Group.png";
 
 export function Certificate() {
@@ -16,7 +18,8 @@ export function Certificate() {
   const rolUsuarioCotabilidad = "R_Contabilidad";
   const rolUsuarioRevisorFiscal = "R_Fiscal";
   const aceptar = "SI"
-  const identificadorDocumento = 12
+  const identificadorDocumento = 586
+  const rechazar = "NO"
 
   useEffect(() => {
     obtenerCertificados()
@@ -141,8 +144,14 @@ export function Certificate() {
   };
 
   
-  function FirmarDocumento(aceptar,identificadorDocumento){
-    modificarEstadoCertificadoLogistica(aceptar, identificadorDocumento)
+  function cambiarEstadoDocumento(nuevoEstado,identificadorDocumento, rolDelUsuario){
+    if(rolDelUsuario == rolUsuariologistica){
+      modificarEstadoCertificadoLogistica(nuevoEstado,identificadorDocumento)
+    }else if(rolDelUsuario == rolUsuarioCotabilidad){
+      modificarEstadoCertificadoContabilidad(nuevoEstado,identificadorDocumento)
+    }else if(rolDelUsuario == rolUsuarioRevisorFiscal){
+      modificarEstadoCertificadoRevisorFiscal(nuevoEstado,identificadorDocumento)
+    }
   }
 
   const certificateStyle = {
@@ -201,8 +210,16 @@ export function Certificate() {
           <CreateButton
             colorClass="bg-gris-claro w-fit h-20"
             selected={selectedOption === "SI"}
-            onClick={() => FirmarDocumento(aceptar, identificadorDocumento)}
+            onClick={() => cambiarEstadoDocumento(aceptar, identificadorDocumento, rolUsuariologistica)}
             text="si"
+          ></CreateButton>
+        </div>
+        <div className="mr-4">
+          <CreateButton
+            colorClass="bg-gris-claro w-fit h-20"
+            selected={selectedOption === "no"}
+            onClick={() => cambiarEstadoDocumento(rechazar, identificadorDocumento, rolUsuariologistica)}
+            text="NO"
           ></CreateButton>
         </div>
       </div>
