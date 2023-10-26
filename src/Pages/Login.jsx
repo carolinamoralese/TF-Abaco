@@ -7,7 +7,7 @@ import {
 import { auth, provider } from "../firebase";
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { obtenerUsuarios } from "../servicios/servicios";
+// import { obtenerUsuarios } from "../servicios/servicios";
 import LoginPhoto from "../assets/loginPhoto.png";
 import AbacoLogo from "../assets/Abaco_logo.png";
 import GFBLogo from "../assets/GFBLogo.png";
