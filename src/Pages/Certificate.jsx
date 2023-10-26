@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";;
+import { useState, useEffect } from "react";
 import { Barrasuperior } from "../Components/Navbar/Index";
 import { Navbar } from "../Components/Navbar/Index";
 import { CreateButton } from "../Components/Button/Button";
 import { DonationInformation } from "../Components/DonationInformation/Index";
 import { obtenerCertificados } from "../servicios/servicios";
-import { modificarEstadoCertificado } from "../servicios/servicios";
+import { modificarEstadoCertificadoLogistica } from "../servicios/servicios";
 import Group from "../assets/Group.png";
 
 export function Certificate() {
@@ -15,9 +15,10 @@ export function Certificate() {
   const rolUsuariologistica = "R_Logistica";
   const rolUsuarioCotabilidad = "R_Contabilidad";
   const rolUsuarioRevisorFiscal = "R_Fiscal";
+  const aceptar = "SI"
+  const identificadorDocumento = 12
 
   useEffect(() => {
-    
     obtenerCertificados()
       .then((documentos) => {
         setDocumentos(documentos);
@@ -122,7 +123,6 @@ export function Certificate() {
           );
         }
       }
-      console.log(documentosFiltrados, 65);
       resolve(documentosFiltrados);
     });
   }
@@ -139,6 +139,11 @@ export function Certificate() {
       setDocumentosFiltrados(documentosFiltrados)
     );
   };
+
+  
+  function FirmarDocumento(aceptar,identificadorDocumento){
+    modificarEstadoCertificadoLogistica(aceptar, identificadorDocumento)
+  }
 
   const certificateStyle = {
     backgroundImage: `url(${Group})`,
@@ -189,6 +194,15 @@ export function Certificate() {
             selected={selectedOption === "Rechazados"}
             onClick={() => handleButtonClick("Rechazados")}
             text="Rechazados"
+          ></CreateButton>
+        </div>
+
+        <div className="mr-4">
+          <CreateButton
+            colorClass="bg-gris-claro w-fit h-20"
+            selected={selectedOption === "SI"}
+            onClick={() => FirmarDocumento(aceptar, identificadorDocumento)}
+            text="si"
           ></CreateButton>
         </div>
       </div>
