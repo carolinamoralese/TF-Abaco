@@ -72,7 +72,6 @@ export function PdfView() {
         className="relative mt-5 flex flex-col items-center ml-40"
       >
         <div className="flex justify-center">
-          <PdfGenerator onDataGenerated={showPDF} />
           {pdfData && (
             <iframe
               title="PDF Viewer"
@@ -82,6 +81,9 @@ export function PdfView() {
               frameBorder="0"
             />
           )}
+        </div>
+        <div className="mt-4">
+          <PdfGenerator onDataGenerated={showPDF} /> {/* Generar PDF */}
         </div>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <div className="mr-4">
