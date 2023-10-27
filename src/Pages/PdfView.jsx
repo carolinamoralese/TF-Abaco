@@ -22,7 +22,7 @@ export function PdfView() {
   const rolUsuarioCotabilidad = "R_Contabilidad";
   const rolUsuarioRevisorFiscal = "R_Fiscal";
   const aceptar = "aceptar";
-  const identificadorDocumento = 9;
+  const identificadorDocumento = 10;
   const rechazar = "rechazar";
 
   function cambiarEstadoDocumento(

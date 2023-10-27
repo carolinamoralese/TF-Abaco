@@ -12,12 +12,14 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 function PdfGenerator({ onDataGenerated }) {
   const [data, setData] = useState(null);
+
   const params = useParams()
 
 
-  const generatePDF = (data) => {
+  const [signatureImage, setSignatureImage] = useState(null);
 
-    
+  const generatePDF = (data, signatureImage) => {
+
     if (data && Array.isArray(data) && data.length > 0) {
 
 
@@ -55,6 +57,7 @@ function PdfGenerator({ onDataGenerated }) {
           style: 'contenido'
         });
       });
+
 
       if(documento.bottomParagraphs){
         documento.bottomParagraphs.forEach((paragraph) => {
@@ -119,6 +122,17 @@ function PdfGenerator({ onDataGenerated }) {
           text:htmlToPdfmake('<p style="text-align: left; font-size: 8pt;">'+documento.address[2]+'</p><p style="text-align: right; font-size: 8pt; color:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+documento.contacto[0]+'</p>'),
         });
 
+
+      // Include the signature image in the PDF
+      if (signatureImage) {
+        content.push({
+          image: signatureImage,
+          width: 200, // Adjust the width as needed
+          alignment: 'center',
+        });
+      }
+
+
       const documentDefinition = {
         content,
         styles: {
@@ -161,6 +175,17 @@ function PdfGenerator({ onDataGenerated }) {
       pdfDoc.getBlob((pdfBlob) => {
         onDataGenerated(pdfBlob);
       });
+    }
+  };
+
+  const handleSignatureImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSignatureImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -211,7 +236,13 @@ function PdfGenerator({ onDataGenerated }) {
         });
     }
   }, []);
-
+  return (
+    <>
+      {/* Input for selecting the signature image */}
+      <input type="file" accept="image/*" onChange={handleSignatureImageChange} />
+      <button onClick={() => generatePDF(data, signatureImage)}>Generar PDF</button>
+    </>
+  );
  
 }
 
