@@ -4,9 +4,6 @@ import { Navbar } from "../Components/Navbar/Index";
 import { CreateButton } from "../Components/Button/Button";
 import { DonationInformation } from "../Components/DonationInformation/Index";
 import { obtenerCertificados } from "../servicios/servicios";
-import { modificarEstadoCertificadoLogistica } from "../servicios/servicios";
-import { modificarEstadoCertificadoContabilidad } from "../servicios/servicios";
-import { modificarEstadoCertificadoRevisorFiscal } from "../servicios/servicios";
 import Group from "../assets/Group.png";
 
 export function Certificate() {
@@ -17,9 +14,6 @@ export function Certificate() {
   const rolUsuariologistica = "R_Logistica";
   const rolUsuarioCotabilidad = "R_Contabilidad";
   const rolUsuarioRevisorFiscal = "R_Fiscal";
-  const aceptar = "SI"
-  const identificadorDocumento = 586
-  const rechazar = "NO"
 
   useEffect(() => {
     obtenerCertificados()
@@ -135,24 +129,13 @@ export function Certificate() {
     let promesaDocumentosFiltrados;
     promesaDocumentosFiltrados = filtrarDocumentos(
       documentos,
-      rolUsuariologistica,
+      rolUsuarioRevisorFiscal,
       estadoDocumento
     );
     promesaDocumentosFiltrados.then((documentosFiltrados) =>
       setDocumentosFiltrados(documentosFiltrados)
     );
   };
-
-  
-  function cambiarEstadoDocumento(nuevoEstado,identificadorDocumento, rolDelUsuario){
-    if(rolDelUsuario == rolUsuariologistica){
-      modificarEstadoCertificadoLogistica(nuevoEstado,identificadorDocumento)
-    }else if(rolDelUsuario == rolUsuarioCotabilidad){
-      modificarEstadoCertificadoContabilidad(nuevoEstado,identificadorDocumento)
-    }else if(rolDelUsuario == rolUsuarioRevisorFiscal){
-      modificarEstadoCertificadoRevisorFiscal(nuevoEstado,identificadorDocumento)
-    }
-  }
 
   const certificateStyle = {
     backgroundImage: `url(${Group})`,
@@ -168,68 +151,51 @@ export function Certificate() {
     <div>
       <Barrasuperior />
       <Navbar />
-<div
-      style={certificateStyle}
-      className="relative mt-5 flex flex-col items-center ml-40"
-    >
-      <div className="flex justify-center">
-        <div className="mr-4">
-          <CreateButton
-            colorClass="bg-naranja w-fit h-20"
-            selected={selectedOption === "Pendientes"}
-            onClick={() => handleButtonClick("Pendientes")}
-            text="Pendientes"
-          ></CreateButton>
+      <div
+        style={certificateStyle}
+        className="relative mt-5 flex flex-col items-center ml-40"
+      >
+        <div className="flex justify-center">
+          <div className="mr-4">
+            <CreateButton
+              colorClass="bg-naranja w-fit h-20"
+              selected={selectedOption === "Pendientes"}
+              onClick={() => handleButtonClick("Pendientes")}
+              text="Pendientes"
+            ></CreateButton>
+          </div>
+          <div className="mr-4">
+            <CreateButton
+              colorClass="bg-verde-claro w-fit h-20"
+              selected={selectedOption === "Aceptados"}
+              onClick={() => handleButtonClick("Aceptados")}
+              text="Aceptados"
+            ></CreateButton>
+          </div>
+          <div className="mr-4">
+            <CreateButton
+              colorClass="bg-amarillo w-fit h-20"
+              selected={selectedOption === "Firmados"}
+              onClick={() => handleButtonClick("Firmados")}
+              text="Firmados"
+            ></CreateButton>
+          </div>
+          <div className="mr-4">
+            <CreateButton
+              colorClass="bg-gris-claro w-fit h-20"
+              selected={selectedOption === "Rechazados"}
+              onClick={() => handleButtonClick("Rechazados")}
+              text="Rechazados"
+            ></CreateButton>
+          </div>
         </div>
-        <div className="mr-4">
-          <CreateButton
-            colorClass="bg-verde-claro w-fit h-20"
-            selected={selectedOption === "Aceptados"}
-            onClick={() => handleButtonClick("Aceptados")}
-            text="Aceptados"
-          ></CreateButton>
-        </div>
-        <div className="mr-4">
-          <CreateButton
-            colorClass="bg-amarillo w-fit h-20"
-            selected={selectedOption === "Firmados"}
-            onClick={() => handleButtonClick("Firmados")}
-            text="Firmados"
-          ></CreateButton>
-        </div>
-        <div className="mr-4">
-          <CreateButton
-            colorClass="bg-gris-claro w-fit h-20"
-            selected={selectedOption === "Rechazados"}
-            onClick={() => handleButtonClick("Rechazados")}
-            text="Rechazados"
-          ></CreateButton>
-        </div>
-
-        <div className="mr-4">
-          <CreateButton
-            colorClass="bg-gris-claro w-fit h-20"
-            selected={selectedOption === "SI"}
-            onClick={() => cambiarEstadoDocumento(aceptar, identificadorDocumento, rolUsuariologistica)}
-            text="si"
-          ></CreateButton>
-        </div>
-        <div className="mr-4">
-          <CreateButton
-            colorClass="bg-gris-claro w-fit h-20"
-            selected={selectedOption === "no"}
-            onClick={() => cambiarEstadoDocumento(rechazar, identificadorDocumento, rolUsuariologistica)}
-            text="NO"
-          ></CreateButton>
+        <div>
+          <DonationInformation
+            documentos={documentosFiltrados}
+            tipoDocumento={"certificados"}
+          ></DonationInformation>
         </div>
       </div>
-      <div>
-        <DonationInformation
-          documentos={documentosFiltrados}
-        ></DonationInformation>
-      </div>
     </div>
-    </div>
-    
-  )
+  );
 }
