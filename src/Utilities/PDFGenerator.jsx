@@ -7,8 +7,9 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 function PDFGenerator({ onDataGenerated }) {
   const [data, setData] = useState(null);
+  const [signatureImage, setSignatureImage] = useState(null);
 
-  const generatePDF = (data) => {
+  const generatePDF = (data, signatureImage) => {
     if (data && Array.isArray(data) && data.length > 0) {
       const paragraphs = data.map(item => item.topParagraphs).flat();
       const bottomParagraphs = data.map(item => item.bottomParagraphs).flat();
@@ -32,6 +33,15 @@ function PDFGenerator({ onDataGenerated }) {
         });
       });
 
+      // Include the signature image in the PDF
+      if (signatureImage) {
+        content.push({
+          image: signatureImage,
+          width: 200, // Adjust the width as needed
+          alignment: 'center',
+        });
+      }
+
       const documentDefinition = {
         content,
         styles: {
@@ -48,6 +58,17 @@ function PDFGenerator({ onDataGenerated }) {
       pdfDoc.getBlob((pdfBlob) => {
         onDataGenerated(pdfBlob);
       });
+    }
+  };
+
+  const handleSignatureImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSignatureImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -76,7 +97,9 @@ function PDFGenerator({ onDataGenerated }) {
 
   return (
     <>
-      <button onClick={() => generatePDF(data)}>Generar PDF</button>
+      {/* Input for selecting the signature image */}
+      <input type="file" accept="image/*" onChange={handleSignatureImageChange} />
+      <button onClick={() => generatePDF(data, signatureImage)}>Generar PDF</button>
     </>
   );
 }

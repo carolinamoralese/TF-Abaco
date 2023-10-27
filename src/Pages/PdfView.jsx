@@ -28,7 +28,7 @@ export function PdfView() {
       <Navbar />
       <div style={homeStyle} className="relative mt-5 flex flex-col items-center ml-40">
         <div className="flex justify-center">
-          
+          {/* Render the PDFGenerator component */}
           <PDFGenerator onDataGenerated={showPDF} />
           {pdfData && (
             <iframe
