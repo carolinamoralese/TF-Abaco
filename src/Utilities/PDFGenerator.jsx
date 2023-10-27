@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import htmlToPdfmake from "html-to-pdfmake"
 import {AbacoLogobase64} from "./utilities"
 import { useParams } from 'react-router';
-
+import { CreateButton } from "../Components/Button/Button";
 
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -236,14 +236,25 @@ function PdfGenerator({ onDataGenerated }) {
         });
     }
   }, []);
+  
   return (
-    <>
+    <div className="flex items-center">
       {/* Input for selecting the signature image */}
-      <input type="file" accept="image/*" onChange={handleSignatureImageChange} />
-      <button onClick={() => generatePDF(data, signatureImage)}>Generar PDF</button>
-    </>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleSignatureImageChange}
+        className="p-2 rounded border "
+      />
+      <div className="mx-auto">
+        <CreateButton
+          colorClass="bg-amarillo w-150 h-10 ml-4"
+          onClick={() => generatePDF(data, signatureImage)}
+          text="Adjuntar Firma"
+        ></CreateButton>
+      </div>
+    </div>
   );
- 
 }
 
 PdfGenerator.propTypes = {
