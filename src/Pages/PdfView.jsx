@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Barrasuperior } from '../Components/Navbar/index';
-import { Navbar } from '../Components/Navbar/index';
+import { useState, useEffect } from 'react';
+import { Barrasuperior } from '../Components/Navbar/Index';
+import { Navbar } from '../Components/Navbar/Index';
 import PDFGenerator from '../Utilities/PDFGenerator';
 import Group from "../assets/Group.png";
 
@@ -10,6 +10,8 @@ export function PdfView() {
   const showPDF = (pdfBlob) => {
     setPdfData(URL.createObjectURL(pdfBlob));
   };
+
+
 
   const homeStyle = {
     backgroundImage: `url(${Group})`,
