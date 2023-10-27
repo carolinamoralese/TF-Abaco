@@ -4,7 +4,7 @@ import { MDBDataTableV5 } from "mdbreact";
 
 export function DonationInformation({ documentos }) {
   documentos.map((documento) => {
-    documento.accion = <a href="#">Ver - Editar</a>;
+    documento.accion = <a href="#">Ver</a>;
     return documento;
   });
 
