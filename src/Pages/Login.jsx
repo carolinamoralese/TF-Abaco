@@ -1,17 +1,13 @@
 import {
   GoogleAuthProvider,
-  getAuth,
   signInWithPopup,
-  signOut,
 } from "@firebase/auth";
-import { auth, provider } from "../firebase";
-import { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
-// import { obtenerUsuarios } from "../servicios/servicios";
+import { auth } from "../firebase";
+import { useState } from "react";
 import LoginPhoto from "../assets/loginPhoto.png";
 import AbacoLogo from "../assets/Abaco_logo.png";
 import GFBLogo from "../assets/GFBLogo.png";
-// import LogosAsociados from "../assets/LogosAsociados.png";
+import LogosAsociados from "../assets/LogosAsociados.png";
 
 export function Login() {
   const [isLogged, setIsLogged] = useState(false);
@@ -25,7 +21,14 @@ export function Login() {
       // El usuario ha iniciado sesión con éxito con Google
       const user = result.user;
       console.log('Inicio de sesión exitoso con Google:', user);
-   localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('isLoggedIn', 'true');
+    
+    // Guarda el correo electrónico, nombre y rol en localStorage
+    localStorage.setItem('userEmail', user.email);
+
+    setIsLogged(true); // Actualiza el estado local del componente
+    console.log('Estado de inicio de sesión guardado en localStorage:', 'true');
+      console.log('Estado de inicio de sesión guardado en localStorage:', 'true');
     } catch (error) {
       // Maneja los errores de inicio de sesión con Google
       console.error('Error de inicio de sesión con Google:', error);
@@ -57,7 +60,7 @@ export function Login() {
       >
           Login
         </button>
-        {/* <img src={LogosAsociados} alt="logos Asociados"></img> */}
+        <img src={LogosAsociados} alt="logos Asociados"></img>
       </section>
     </main>
   );

@@ -1,14 +1,47 @@
+import { auth } from '../../firebase'
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from 'react';
 import logoColor from "../../assets/logocolor.png";
 import cosecha from "../../assets/EDITABL-PLATAFORMA-10.png";
 import hoja from "../../assets/hoja.png";
+import { getUserInfoByEmail } from "../../servicios/firebaseService"
 import './index.css'
 
 export const  Barrasuperior = () => {
+ 
+  const userEmail = localStorage.getItem('userEmail');
+
+  const handleLogout = () => {
+    auth
+      .signOut()
+      .then(() => {
+        console.log('Cierre de sesión exitoso');
+        // Elimina los datos del usuario del localStorage en el cierre de sesión
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userRole');
+      })
+      .catch((error) => {
+        console.error('Error al cerrar sesión', error);
+      });
+  };
+
+  const getRoleFromEmail = (email) => {
+    if (email === 'ingridbrown@abaco.org.co' || email === 'logisticatest@abaco.org.co') {
+      return 'Logística';
+    } else if (email === 'nubiahernandez@abaco.org.co' || email === 'contabilidadtest@abaco.org.co') {
+      return 'Contabilidad';
+    } else if (email === 'fiscaltest@abaco.org.co') {
+      return 'Revisor Fiscal';
+    }
+    return '';
+  };
+
+  const userRole = getRoleFromEmail(userEmail);
+
   return (
     <div className="barrasuperior">
       <img className="cosecha" src={cosecha} alt="LogoCosecha" />
-      <div className="menú--lateral" />
+      {/* <div className="menú--lateral" /> */}
       <div className="texto--plataforma--logo">
       <img className="logo-color" src={logoColor} alt="LogoColor" />
         <div className="barra--lateral--texto--abaco">
@@ -23,8 +56,9 @@ ABACO</p>
           </div>
         </div>
         <div className="nombre--tipodeusuario">
-          <p className="text-4">Bienvenido, nombre de usuario</p>
-          <p className="text-5">  Revisor logistica</p>
+          <p className="text-4">Bienvenido, {userEmail}</p>
+          <p className="text-4">{userRole}</p>
+          <button onClick={handleLogout}>Cerrar Sesión</button>
         </div>
       </div>
     </div>
@@ -35,8 +69,7 @@ const Navbar = () => {
   const activeStyle = "bg-amarillo text-white rounded-r-full w-60 h-8"; // Fondo de color verde (#d2de38)
   
 return (
-  <div className="flex mt-40 ml-0">
-<nav className="fixed top-40 left-0 mt-0 w-72 h-screen shadow-xl space-y-8">
+<nav className="fixed left-0 mt-0 w-72 h-[90%] shadow-xl space-y-8">
     <ul>
       <li className="mt-40">
       <NavLink 
@@ -87,8 +120,6 @@ return (
       </li>
     </ul>
   </nav>
-
-  </div>
   
 );
 };

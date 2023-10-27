@@ -19,7 +19,7 @@ export default {
     extend: {
       screens: {
         'sm': '640px',
-        'md': '1080px', // Cambia este valor
+        'md': '1080px',
         'lg': '1280px',
         // ...
       },

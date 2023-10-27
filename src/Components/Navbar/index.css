@@ -1,113 +1,108 @@
 .active-link {
-    background-color: #8cc63f; /* Fondo de color verde */
-    color: white !important; /* Color de texto blanco */
-    border-radius: 20px; /* Borde redondeado */
-    padding: 10px 20px; /* Espaciado horizontal y vertical */
-  }
+  background-color: #8cc63f; /* Fondo de color verde */
+  color: white !important; /* Color de texto blanco */
+  border-radius: 20px; /* Borde redondeado */
+  padding: 10px 20px; /* Espaciado horizontal y vertical */
+}
 
-  .cosecha{
-    width: 488px;
-    height: 261px;
-    position: absolute;
-    left: 0;
-  }
-  
-  .barrasuperior {
-    background-color: #ffffff;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 10px; 
-    position: absolute; 
-    top: 0; 
-    height: 200px;
-    width: 1440px;
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-  }  
-  .texto--plataforma--logo {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 10px;
-    gap: 10px;
-  }
-  .logo-color {
-    height: 143px;
-    width: 123px;
-  }
-  .barra--lateral--texto--abaco {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
-    gap: 10px;
-  }
-  .text-2 {
-    text-align: left;
-    vertical-align: top;
-    font-size: 48px;
-    font-family: Corporate Rounded;
-    line-height: auto;
-    color: #4d4d4d;
-  }
-  .nombre--roldeusuario {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 16px;
-  }
-  .imagenperfil {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 10px;
-    gap: 10px;
-  }
-  .frame-1-8-5-7 {
-    border-radius: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 4px 8px;
-    gap: 10px;
-    background-color: #ffffff;
-  }
-  .text-3 {
-    text-align: center;
-    vertical-align: top;
-    font-size: 25px;
-    font-family: SF Pro Text;
-    letter-spacing: -0.40799999237060547px;
-    line-height: auto;
-    color: #b3b3b3;
-  }
-  .nombre--tipodeusuario {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 7px;
-  }
-  .text-4 {
-    text-align: left;
-    vertical-align: top;
-    font-size: 24px;
-    font-family: Corporate Rounded;
-    line-height: auto;
-    color: #4d4d4d;
-  }
-  .text-5 {
-    text-align: left;
-    vertical-align: top;
-    font-size: 20px;
-    font-family: Corporate Rounded;
-    line-height: auto;
-    color: #4d4d4d;
-  }
-  
-  
+.barrasuperior {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  max-height: 200px;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: 30% 40% 30%;
+  margin-bottom: 40px;
+}
+.cosecha {
+  max-width: 100%;
+  max-height: 200px;
+  margin: 0;
+  justify-self: start;
+  align-self: start;
+  object-fit: contain;
+}
+.texto--plataforma--logo {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+}
+.logo-color {
+  height: 143px;
+  width: auto;
+}
+.barra--lateral--texto--abaco {
+  max-height: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  gap: 10px;
+}
+.text-2 {
+  text-align: left;
+  vertical-align: top;
+  font-size: 48px;
+  font-family: Corporate Rounded;
+  line-height: auto;
+  color: #4d4d4d;
+}
+.nombre--roldeusuario {
+  max-height: 200px;
+  height: auto;
+  width: 25%;
+  display: flex;
+  justify-self: center;
+}
+.imagenperfil {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 10px;
+}
+.frame-1-8-5-7 {
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 10px;
+  background-color: #ffffff;
+}
+.text-3 {
+  text-align: center;
+  vertical-align: top;
+  font-size: 25px;
+  font-family: SF Pro Text;
+  letter-spacing: -0.40799999237060547px;
+  line-height: auto;
+  color: #b3b3b3;
+}
+.nombre--tipodeusuario {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 7px;
+}
+.text-4 {
+  text-align: left;
+  vertical-align: top;
+  font-size: 24px;
+  font-family: Corporate Rounded;
+  line-height: auto;
+  color: #4d4d4d;
+}
+.text-5 {
+  text-align: left;
+  vertical-align: top;
+  font-size: 20px;
+  font-family: Corporate Rounded;
+  line-height: auto;
+  color: #4d4d4d;
+}

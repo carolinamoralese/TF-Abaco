@@ -39,10 +39,11 @@ export function Home() {
   };
 
   return (
-    <>
+    <main className="flex flex-col">
       <Barrasuperior />
+      <div>
       <Navbar />
-      <div
+      <div id="contenido"
         style={homeStyle}
         className="relative mt-5 flex flex-col items-center ml-40"
       >
@@ -90,6 +91,7 @@ export function Home() {
           </div>
         </div>
       </div>
-    </>
+      </div>
+    </main>
   );
 }

@@ -1,14 +1,18 @@
-// import { GoogleAuthProvider, signInWithPopup, signOut } from "@firebase/auth";
-// import {addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc} from "firebase/firestore";
-// import {auth, db} from "../firebase";
+import { db } from '../firebase'; // Importa db (Firebase Firestore)
 
-// export const login = async () => {
-//     const provider = new GoogleAuthProvider();
-//     try {
-//       const { user } = await signInWithPopup(auth, provider);
-//       return user;
-//     } catch (error) {
-//       return { response: "error", msg: "Error, favor intente nuevamente" };
-//     }
-//   }
+// Función para obtener la información del usuario por correo electrónico
+export const getUserInfoByEmail = async (userEmail) => {
+    try {
+      const userRef = db.collection('usuarios');
+      const snapshot = await userRef.where('mail', '==', userEmail).get();
   
+      if (!snapshot.empty) {
+        const userData = snapshot.docs[0].data();
+        return userData;
+      } else {
+        return null; // El usuario no se encontró en la base de datos
+      }
+    } catch (error) {
+      throw error;
+    }
+  };

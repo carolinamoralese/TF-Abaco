@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Barrasuperior } from "../Components/Navbar/Index";
-import { Navbar } from "../Components/Navbar/Index";
+import { Barrasuperior, Navbar } from "../Components/Navbar/Index";
 import { CreateButton } from "../Components/Button/Button";
 import { DonationInformation } from "../Components/DonationInformation/Index";
 import { obtenerCertificados } from "../servicios/servicios";
@@ -148,7 +147,7 @@ export function Certificate() {
   };
 
   return (
-    <div>
+    <main>
       <Barrasuperior />
       <Navbar />
       <div
@@ -196,6 +195,6 @@ export function Certificate() {
           ></DonationInformation>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
