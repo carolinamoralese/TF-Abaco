@@ -226,6 +226,7 @@ export function Certificate() {
       <div>
         <DonationInformation
           documentos={documentosFiltrados}
+          tipoDocumento={"certificados"}
         ></DonationInformation>
       </div>
     </div>

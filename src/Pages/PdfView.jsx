@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Barrasuperior } from '../Components/Navbar/Index';
 import { Navbar } from '../Components/Navbar/Index';
-import PDFGenerator from '../Utilities/PDFGenerator';
+import PdfGenerator from '../Utilities/PDFGenerator';
 import Group from "../assets/Group.png";
 
 export function PdfView() {
@@ -31,7 +31,7 @@ export function PdfView() {
       <div style={homeStyle} className="relative mt-5 flex flex-col items-center ml-40">
         <div className="flex justify-center">
           
-          <PDFGenerator onDataGenerated={showPDF} />
+          <PdfGenerator onDataGenerated={showPDF} />
           {pdfData && (
             <iframe
               title="PDF Viewer"

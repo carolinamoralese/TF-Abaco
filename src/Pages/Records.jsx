@@ -195,6 +195,7 @@ export function Records() {
         <div>
           <DonationInformation
             documentos={documentosFiltrados}
+            tipoDocumento={"constancias"}
           ></DonationInformation>
         </div>
       </div>

@@ -2,9 +2,10 @@ import React from "react";
 import { MDBDataTableV5 } from "mdbreact";
 
 
-export function DonationInformation({ documentos }) {
+export function DonationInformation({ documentos,tipoDocumento }) {
   documentos.map((documento) => {
-    documento.accion = <a href="/pdf-view">Ver</a>;
+    let ruta = "/pdf-view/" + tipoDocumento + "/" + documento.Consecutivo
+    documento.accion = <a href={ruta}>Ver</a>;
     return documento;
   });
 

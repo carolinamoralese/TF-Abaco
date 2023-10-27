@@ -4,17 +4,36 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import PropTypes from 'prop-types';
 import htmlToPdfmake from "html-to-pdfmake"
 import {AbacoLogobase64} from "./utilities"
+import { useParams } from 'react-router';
 
 
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-function PDFGenerator({ onDataGenerated }) {
+function PdfGenerator({ onDataGenerated }) {
   const [data, setData] = useState(null);
+  const params = useParams()
+
+
   const generatePDF = (data) => {
+  
+  console.log(params)
     
     if (data && Array.isArray(data) && data.length > 0) {
-      const documento = data[0]
+      console.log(data[0]["hoja_No"],2)
+      console.log(params.constancias_consecutivo,3)
+
+      let documento;
+      if( typeof params.certificados_consecutivo !== 'undefined'){
+         documento = data.filter(documento => documento["hoja_No"] == params.certificados_consecutivo)
+      }else if( typeof params.constancias_consecutivo !== 'undefined'){
+         documento = data.filter(documento => documento["hoja_No"] == params.constancias_consecutivo)
+      }
+
+      
+      documento = documento[0]
+      console.log(data,90)
+      console.log(documento,101)
 
       let content = [];
 
@@ -26,7 +45,7 @@ function PDFGenerator({ onDataGenerated }) {
         margin: [0, -40, 0, 20]
 
       })
-
+console.log(documento,10)
       documento.titulos.forEach((titulo) => {
         content.push({
           text: htmlToPdfmake(titulo+"<br><br>"),
@@ -41,19 +60,32 @@ function PDFGenerator({ onDataGenerated }) {
         });
       });
 
-      documento.bottomParagraphs.forEach((paragraph) => {
-        content.push({
-          text: paragraph,
+      if(documento.bottomParagraphs){
+        documento.bottomParagraphs.forEach((paragraph) => {
+          content.push({
+            text: htmlToPdfmake(paragraph),
+            style: 'contenido'
+          });
         });
-      });
+      }
 
-      
+   
 
-  
+      if(documento.representanteLegal && documento.revisorFiscal){
         content.push({
           text:htmlToPdfmake('<br></br><br></br><br></br><p style="text-align: left; font-size: 12pt;"><b>'+documento.representanteLegal+'</b></p><p style="text-align: right; font-size: 12pt; "><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+documento.revisorFiscal.nombre+'</b></p>'),
         });
+      }else{
+        content.push({
+          text:htmlToPdfmake('<br></br><br></br><br></br><p style="text-align: left; font-size: 12pt;"><b>'+documento.representanteLegal.nombre)
+        });
+        content.push({
+          text:htmlToPdfmake('<p style="text-align: left; font-size: 10pt;">'+documento.representanteLegal.cargo)
+        });
+      }
 
+  
+      if(documento.representanteLegal && documento.revisorFiscal){
         content.push({
           text:htmlToPdfmake('<p style="text-align: left; font-size: 10pt;">Representante legal</p><p style="text-align: right; font-size: 10pt; ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Revisor fiscal</p>'),
         });
@@ -65,9 +97,12 @@ function PDFGenerator({ onDataGenerated }) {
         content.push({
           text:htmlToPdfmake('<p style="text-align: left; font-size: 10pt; color:white;">representante legal;</p><p style="text-align: right; font-size: 10pt;">&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Designado por'+documento.revisorFiscal.designatedBy+'</p><br></br><br></br>'),
         });
+      }
+
+      
       
         content.push({
-          text: "Elaboró"+documento.elaborated,
+          text: htmlToPdfmake("<br></br><br></br><br></br>Elaboró"+documento.elaborated),
           style: "informacionRevisado"
         });
         content.push({
@@ -134,34 +169,81 @@ function PDFGenerator({ onDataGenerated }) {
   };
 
   useEffect(() => {
-    fetch('https://script.google.com/macros/s/AKfycbwz3FM2ZsBFfNvIj8uZ8Gr4e6WpFyV4i3IrM5QryPFpBTplWqmagkCw03m1LWUc-f1m/exec', {
-      method: 'POST',
-      body: 'authKey=zllLcfI6b1xwqj5',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Error en la solicitud');
-        }
+    console.log(params)
+    console.log("pepa")
+    if( typeof params.certificado_consecutivo !== 'undefined'){
+      fetch('https://script.google.com/macros/s/AKfycbwz3FM2ZsBFfNvIj8uZ8Gr4e6WpFyV4i3IrM5QryPFpBTplWqmagkCw03m1LWUc-f1m/exec', {
+        method: 'POST',
+        body: 'authKey=zllLcfI6b1xwqj5',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       })
-      .then((jsonData) => {
-        setData(jsonData);
-        generatePDF(jsonData)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Error en la solicitud');
+          }
+        })
+        .then((jsonData) => {
+          setData(jsonData);
+          generatePDF(jsonData)
+        })
+        .catch((error) => {
+          console.error('Error al obtener datos:', error);
+        });
+    }else if(typeof params.constancias_consecutivo !== 'undefined'){
+      fetch('https://script.google.com/macros/s/AKfycbxBXQw5wB747NT-LwW_1Zskb0cL0oi7QPL2V45iB4i8fUMh9h8ldD6D5ExVnZMHqScD/exec', {
+        method: 'POST',
+        body: 'authKey=L9zewK9EBh6mvWZ',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       })
-      .catch((error) => {
-        console.error('Error al obtener datos:', error);
-      });
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Error en la solicitud');
+          }
+        })
+        .then((jsonData) => {
+          setData(jsonData);
+          generatePDF(jsonData)
+        })
+        .catch((error) => {
+          console.error('Error al obtener datos:', error);
+        });
+    }
+    // fetch('https://script.google.com/macros/s/AKfycbwz3FM2ZsBFfNvIj8uZ8Gr4e6WpFyV4i3IrM5QryPFpBTplWqmagkCw03m1LWUc-f1m/exec', {
+    //   method: 'POST',
+    //   body: 'authKey=zllLcfI6b1xwqj5',
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //   },
+    // })
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       return response.json();
+    //     } else {
+    //       throw new Error('Error en la solicitud');
+    //     }
+    //   })
+    //   .then((jsonData) => {
+    //     setData(jsonData);
+    //     generatePDF(jsonData)
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error al obtener datos:', error);
+    //   });
   }, []);
 
  
 }
 
-PDFGenerator.propTypes = {
+PdfGenerator.propTypes = {
   onDataGenerated: PropTypes.func.isRequired,
 };
 
-export default PDFGenerator;
+export default PdfGenerator;
