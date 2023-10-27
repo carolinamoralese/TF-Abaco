@@ -32,7 +32,7 @@ function AppRoutes() {
         element: <Indicators />
       },
       {
-        path: '/pdf-view/certificados/:certificado_consecutivo',
+        path: '/pdf-view/certificados/:certificados_consecutivo',
         element: <PdfView />
       },
       {

@@ -16,12 +16,10 @@ function PdfGenerator({ onDataGenerated }) {
 
 
   const generatePDF = (data) => {
-  
-  console.log(params)
+
     
     if (data && Array.isArray(data) && data.length > 0) {
-      console.log(data[0]["hoja_No"],2)
-      console.log(params.constancias_consecutivo,3)
+
 
       let documento;
       if( typeof params.certificados_consecutivo !== 'undefined'){
@@ -32,8 +30,7 @@ function PdfGenerator({ onDataGenerated }) {
 
       
       documento = documento[0]
-      console.log(data,90)
-      console.log(documento,101)
+
 
       let content = [];
 
@@ -45,7 +42,6 @@ function PdfGenerator({ onDataGenerated }) {
         margin: [0, -40, 0, 20]
 
       })
-console.log(documento,10)
       documento.titulos.forEach((titulo) => {
         content.push({
           text: htmlToPdfmake(titulo+"<br><br>"),
@@ -169,9 +165,7 @@ console.log(documento,10)
   };
 
   useEffect(() => {
-    console.log(params)
-    console.log("pepa")
-    if( typeof params.certificado_consecutivo !== 'undefined'){
+    if( typeof params.certificados_consecutivo !== 'undefined'){
       fetch('https://script.google.com/macros/s/AKfycbwz3FM2ZsBFfNvIj8uZ8Gr4e6WpFyV4i3IrM5QryPFpBTplWqmagkCw03m1LWUc-f1m/exec', {
         method: 'POST',
         body: 'authKey=zllLcfI6b1xwqj5',
@@ -216,27 +210,6 @@ console.log(documento,10)
           console.error('Error al obtener datos:', error);
         });
     }
-    // fetch('https://script.google.com/macros/s/AKfycbwz3FM2ZsBFfNvIj8uZ8Gr4e6WpFyV4i3IrM5QryPFpBTplWqmagkCw03m1LWUc-f1m/exec', {
-    //   method: 'POST',
-    //   body: 'authKey=zllLcfI6b1xwqj5',
-    //   headers: {
-    //     'Content-Type': 'application/x-www-form-urlencoded',
-    //   },
-    // })
-    //   .then((response) => {
-    //     if (response.ok) {
-    //       return response.json();
-    //     } else {
-    //       throw new Error('Error en la solicitud');
-    //     }
-    //   })
-    //   .then((jsonData) => {
-    //     setData(jsonData);
-    //     generatePDF(jsonData)
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error al obtener datos:', error);
-    //   });
   }, []);
 
  

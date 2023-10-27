@@ -4,7 +4,6 @@ import { Navbar } from "../Components/Navbar/Index";
 import { CreateButton } from "../Components/Button/Button";
 import { obtenerConstancias } from "../servicios/servicios";
 import { DonationInformation } from "../Components/DonationInformation/Index";
-import { modificarEstadoConstanciaLogistica } from "../servicios/servicios";
 import Group from "../assets/Group.png";
 
 export function Records() {
@@ -15,9 +14,6 @@ export function Records() {
   const rolUsuariologistica = "R_Logistica";
   const rolUsuarioCotabilidad = "R_Contabilidad";
   const rolUsuarioRevisorFiscal = "R_Fiscal";
-  const aceptar = "SI"
-  const identificadorDocumento = "7"
-  const rechazar = "NO"
 
   useEffect(() => {
     obtenerConstancias()
@@ -98,15 +94,11 @@ export function Records() {
       }
       documentosFiltrados = documentosFiltrados.map((documento) => {
         documento["Fecha Expedición"] = documento["Fecha de Expedición"];
-        documento["EMPRESA "] = documento["Empresa"]
+        documento["EMPRESA "] = documento["Empresa"];
         return documento;
       });
       resolve(documentosFiltrados);
     });
-  }
-
-  function cambiarEstadoDocumento(nuevoEstado,identificadorDocumento){
-    modificarEstadoConstanciaLogistica(nuevoEstado, identificadorDocumento)
   }
 
   const certificateStyle = {
@@ -172,25 +164,6 @@ export function Records() {
               text="Rechazados"
             ></CreateButton>
           </div>
-
-          <div className="mr-4">
-          <CreateButton
-            colorClass="bg-gris-claro w-fit h-20"
-            selected={selectedOption === "SI"}
-            onClick={() => cambiarEstadoDocumento(aceptar, identificadorDocumento)}
-            text="si"
-          ></CreateButton>
-        </div>
-        <div className="mr-4">
-          <CreateButton
-            colorClass="bg-gris-claro w-fit h-20"
-            selected={selectedOption === "no"}
-            onClick={() => cambiarEstadoDocumento(rechazar, identificadorDocumento)}
-            text="NO"
-          ></CreateButton>
-        </div>
-
-
         </div>
         <div>
           <DonationInformation
