@@ -69,9 +69,9 @@ const Navbar = () => {
   const activeStyle = "bg-amarillo text-white rounded-r-full w-60 h-8"; // Fondo de color verde (#d2de38)
   
 return (
-<nav className="fixed left-0 mt-0 w-72 h-[90%] shadow-xl space-y-8">
+<nav className="fixed left-0 mt-0 w-72 h-[90%] shadow-xl space-y-12">
     <ul>
-      <li className="mt-40">
+      <li className="mt-12">
       <NavLink 
               to="/home"
               className={({ isActive }) => (isActive ? `flex items-center ${activeStyle}` : undefined)}

@@ -46,7 +46,11 @@ function AppRoutes() {
       element: user ? <Indicators /> : <Navigate to='/' />,
     },
     {
-      path: '/pdf-view',
+      path: '/pdf-view/certificados/:certificados_consecutivo',
+      element: user ? <PdfView /> : <Navigate to='/' />,
+    },
+    {
+      path: '/pdf-view/constancias/:constancias_consecutivo',
       element: user ? <PdfView /> : <Navigate to='/' />,
     },
     {
