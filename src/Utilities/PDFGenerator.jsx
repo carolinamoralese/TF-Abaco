@@ -238,7 +238,7 @@ function PdfGenerator({ onDataGenerated }) {
   }, []);
   
   return (
-    <div className="flex items-center">
+    <div className="flex items-center mb-4">
       {/* Input for selecting the signature image */}
       <input
         type="file"
