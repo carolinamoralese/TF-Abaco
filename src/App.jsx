@@ -47,11 +47,11 @@ function AppRoutes() {
     },
     {
       path: '/pdf-view/certificados/:certificados_consecutivo',
-      element: user ? <PdfView /> : <Navigate to='/' />,
+      element: <PdfView />
     },
     {
       path: '/pdf-view/constancias/:constancias_consecutivo',
-      element: user ? <PdfView /> : <Navigate to='/' />,
+      element: <PdfView />
     },
     {
       path: '/home-info',

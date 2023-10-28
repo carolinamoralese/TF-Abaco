@@ -9,10 +9,12 @@ import { modificarEstadoCertificadoContabilidad } from "../servicios/servicios";
 import { modificarEstadoCertificadoRevisorFiscal } from "../servicios/servicios";
 import { modificarEstadoConstanciaLogistica } from "../servicios/servicios";
 import { useParams } from "react-router";
+import PopUp from "../Components/PopUp"
 
 export function PdfView() {
   const [pdfData, setPdfData] = useState(null);
   const [selectedOption, setSelectedOption] = useState("");
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const params = useParams();
 
   const showPDF = (pdfBlob) => {
@@ -50,6 +52,8 @@ export function PdfView() {
     } else if (typeof params.constancias_consecutivo !== "undefined") {
       modificarEstadoConstanciaLogistica(nuevoEstado, identificadorDocumento);
     }
+        setIsPopupOpen(true); // Abre el PopUp al cambiar el estado del documento
+  
   }
 
   const homeStyle = {
@@ -86,7 +90,7 @@ export function PdfView() {
           <PdfGenerator onDataGenerated={showPDF} /> {/* Generar PDF */}
         </div>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <div className="mr-4">
+          <div className="mr-4 mb-4">
             <CreateButton
               colorClass="bg-verde-claro w-150 h-10"
               selected={selectedOption === "aceptar"}
@@ -94,13 +98,13 @@ export function PdfView() {
                 cambiarEstadoDocumento(
                   aceptar,
                   identificadorDocumento,
-                  rolUsuariologistica
+                  rolUsuariologistica,
                 )
               }
               text="Aceptar"
             ></CreateButton>
           </div>
-          <div className="mr-4">
+          <div className="mr-4 mb-4">
             <CreateButton
               colorClass="bg-gris-claro w-150 h-10"
               selected={selectedOption === "rechazar"}
@@ -115,6 +119,9 @@ export function PdfView() {
             ></CreateButton>
           </div>
         </div>
+        {isPopupOpen && (
+          <PopUp isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} message="¡Se ha generado con éxito!" />
+        )}
       </div>
     </>
   );
