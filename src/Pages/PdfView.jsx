@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Barrasuperior } from "../Components/Navbar/Index";
-import { Navbar } from "../Components/Navbar/Index";
+// import { Barrasuperior } from "../Components/Navbar/Index";
+// import { Navbar } from "../Components/Navbar/Index";
+import { Navbar, Barrasuperior } from "../Components/Navbar/Index";
 import PdfGenerator from "../Utilities/PDFGenerator";
 import Group from "../assets/Group.png";
 import { CreateButton } from "../Components/Button/Button";
