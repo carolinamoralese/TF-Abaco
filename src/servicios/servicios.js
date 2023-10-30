@@ -98,3 +98,20 @@ export const modificarEstadoConstanciaLogistica = (nuevoEstado, consecutivo) => 
         throw error.mensaje;
     })
 }
+
+
+export const obtenerUsuarios = () => {
+    let opciones = {
+        method: "POST",
+        
+      };
+    let parametros = new URLSearchParams({
+        key: VARIABLES_ENTORNO.REACT_APP_KEY_OBTENER_USUARIOS,
+    })
+    return fetch(VARIABLES_ENTORNO.REACT_APP_URL_OBTENER_USUARIOS+"?"+parametros, opciones)
+    .then((respuesta) => respuesta.json())
+    .catch((error) => {
+        console.log(error)
+        throw error.mensaje;
+    })
+}

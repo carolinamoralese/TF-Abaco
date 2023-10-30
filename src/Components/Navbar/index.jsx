@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react';
 import logoColor from "../../assets/logocolor.png";
 import cosecha from "../../assets/EDITABL-PLATAFORMA-10.png";
 import hoja from "../../assets/hoja.png";
-import { getUserInfoByEmail } from "../../servicios/firebaseService"
+import { obtenerUsuarios } from '../../servicios/servicios';
 import './index.css'
 
 export const  Barrasuperior = () => {
  
   const userEmail = localStorage.getItem('userEmail');
+  const [usuarioCorreo, setUsuarioCorreo] = useState("")
+  const [usuarioRol, setUsuarioRol] = useState("")
 
   const handleLogout = () => {
     auth
@@ -25,18 +27,21 @@ export const  Barrasuperior = () => {
       });
   };
 
-  const getRoleFromEmail = (email) => {
-    if (email === 'ingridbrown@abaco.org.co' || email === 'logisticatest@abaco.org.co') {
-      return 'Logística';
-    } else if (email === 'nubiahernandez@abaco.org.co' || email === 'contabilidadtest@abaco.org.co') {
-      return 'Contabilidad';
-    } else if (email === 'fiscaltest@abaco.org.co') {
-      return 'Revisor Fiscal';
-    }
-    return '';
-  };
 
-  const userRole = getRoleFromEmail(userEmail);
+
+  useEffect(() => {
+    obtenerUsuarios()
+    .then((usuarios) => {
+      let usuarioLogueado = usuarios.filter(usuario => usuario.Correo === userEmail)
+      setUsuarioCorreo(usuarioLogueado[0].Correo)
+      setUsuarioRol(usuarioLogueado[0].DescripcionRol)
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }, []);
+
+
 
   return (
     <div className="barrasuperior">
@@ -56,8 +61,8 @@ ABACO</p>
           </div>
         </div>
         <div className="nombre--tipodeusuario">
-          <p className="text-4">Bienvenido, {userEmail}</p>
-          <p className="text-4">{userRole}</p>
+          <p className="text-4">Bienvenido, {usuarioCorreo}</p>
+          <p className="text-4">{usuarioRol}</p>
           <button onClick={handleLogout}>Cerrar Sesión</button>
         </div>
       </div>
