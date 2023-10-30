@@ -9,6 +9,8 @@ import { PdfView } from './Pages/PdfView.jsx';
 import './App.css';
 import { useEffect, useState } from 'react';
 import { auth } from './firebase.jsx';
+import logoColor2 from './assets/logocolor2.ico';
+import { Helmet } from 'react-helmet';
 
 function AppRoutes() {
   const [user, setUser] = useState(null);
@@ -64,6 +66,10 @@ function AppRoutes() {
 function App() {
   return (
     <BrowserRouter>
+      <Helmet>
+        <title>ABACO</title>
+        <link rel="icon" href={logoColor2}  />
+      </Helmet>
       <AppRoutes />
     </BrowserRouter>
   );
