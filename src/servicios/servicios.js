@@ -115,3 +115,21 @@ export const obtenerUsuarios = () => {
         throw error.mensaje;
     })
 }
+
+
+//uno a uno
+export const obtenerDetalleFactura = () => {
+    let opciones = {
+        method: "POST",
+        
+      };
+    let parametros = new URLSearchParams({
+        key: VARIABLES_ENTORNO.REACT_APP_KEY_OBTENER_DETALLES_FACTURAS,
+    })
+    return fetch(VARIABLES_ENTORNO.REACT_APP_URL_OBTENER_DETALLES_FACTURAS+"?"+parametros, opciones)
+    .then((respuesta) => respuesta.json())
+    .catch((error) => {
+        console.log(error)
+        throw error.mensaje;
+    })
+}

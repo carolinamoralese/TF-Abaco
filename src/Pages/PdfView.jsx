@@ -114,7 +114,7 @@ export function PdfView() {
           </div>
         </div>
         {isPopupOpen && (
-          <PopUp isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} message="¡Se ha generado con éxito!" />
+          <PopUp isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} message="¡Se ha gestionado el documento!" />
         )}
       </div>
     </>

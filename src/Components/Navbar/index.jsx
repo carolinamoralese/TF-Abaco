@@ -17,7 +17,6 @@ export const  Barrasuperior = () => {
     auth
       .signOut()
       .then(() => {
-        console.log('Cierre de sesión exitoso');
         // Elimina los datos del usuario del localStorage en el cierre de sesión
         localStorage.removeItem('userEmail');
         localStorage.removeItem('usuarioRol');

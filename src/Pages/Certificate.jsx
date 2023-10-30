@@ -32,7 +32,6 @@ export function Certificate() {
       documentosFiltrados = documentos.filter(
         (documento) => !["#N/A", ""].includes(documento[propiedadEmpresa])
       );
-      console.log(rolUsuario,9999)
 
       if (rolUsuario == "Logistica") {
         if (estado == "Pendientes") {

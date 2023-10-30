@@ -34,30 +34,10 @@ export function Records() {
         (documento) => !["#N/A", ""].includes(documento[propiedadEmpresa])
       );
 
-      if (rolUsuario == rolUsuariologistica) {
+      if (rolUsuario == "Logistica") {
         if (estado == "Pendientes") {
           documentosFiltrados = documentosFiltrados.filter(
-            (documento) => documento[rolUsuario] === ""
-          );
-        } else if (estado == "Aceptados") {
-          documentosFiltrados = documentosFiltrados.filter(
-            (documento) => documento[rolUsuario].toUpperCase() === "SI"
-          );
-        } else if (estado == "Firmados") {
-          documentosFiltrados = documentosFiltrados.filter(
-            (documento) => documento[rolUsuariologistica].toUpperCase() === "SI"
-          );
-        } else if (estado == "Rechazados") {
-          documentosFiltrados = documentosFiltrados.filter(
-            (documento) => documento[rolUsuariologistica].toUpperCase() === "NO"
-          );
-        }
-      }
-
-      if (rolUsuario == rolUsuarioCotabilidad) {
-        if (estado == "Pendientes") {
-          documentosFiltrados = documentosFiltrados.filter(
-            (documento) => documento[rolUsuariologistica].toUpperCase() === "SI"
+            (documento) => documento[rolUsuariologistica] === ""
           );
         } else if (estado == "Aceptados") {
           documentosFiltrados = documentosFiltrados.filter(
@@ -74,11 +54,27 @@ export function Records() {
         }
       }
 
-      if (rolUsuario == rolUsuarioRevisorFiscal) {
+      if (rolUsuario == "Contabilidad") {
         if (estado == "Pendientes") {
+          documentosFiltrados = []
+        } else if (estado == "Aceptados") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) => documento[rolUsuariologistica].toUpperCase() === "SI"
           );
+        } else if (estado == "Firmados") {
+          documentosFiltrados = documentosFiltrados.filter(
+            (documento) => documento[rolUsuariologistica].toUpperCase() === "SI"
+          );
+        } else if (estado == "Rechazados") {
+          documentosFiltrados = documentosFiltrados.filter(
+            (documento) => documento[rolUsuariologistica].toUpperCase() === "NO"
+          );
+        }
+      }
+
+      if (rolUsuario == "Fiscal") {
+        if (estado == "Pendientes") {
+          documentosFiltrados = []
         } else if (estado == "Aceptados") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) => documento[rolUsuariologistica].toUpperCase() === "SI"
