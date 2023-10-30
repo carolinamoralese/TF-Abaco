@@ -18,6 +18,7 @@ export function PdfView() {
   const params = useParams();
   const usuarioRol = localStorage.getItem('usuarioRol');
 
+
   const showPDF = (pdfBlob) => {
     setPdfData(URL.createObjectURL(pdfBlob));
   };
@@ -48,7 +49,7 @@ export function PdfView() {
     } else if (typeof params.constancias_consecutivo !== "undefined") {
       modificarEstadoConstanciaLogistica(nuevoEstado, params.constancias_consecutivo);
     }
-        setIsPopupOpen(true); // Abre el PopUp al cambiar el estado del documento
+        setIsPopupOpen(true);
   
   }
 
@@ -119,4 +120,5 @@ export function PdfView() {
       </div>
     </>
   );
-}
+
+ }
