@@ -18,19 +18,15 @@ export function Login() {
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      // El usuario ha iniciado sesión con éxito con Google
+
       const user = result.user;
-      console.log('Inicio de sesión exitoso con Google:', user);
       localStorage.setItem('isLoggedIn', 'true');
     
-    // Guarda el correo electrónico, nombre y rol en localStorage
     localStorage.setItem('userEmail', user.email);
 
-    setIsLogged(true); // Actualiza el estado local del componente
-    console.log('Estado de inicio de sesión guardado en localStorage:', 'true');
-      console.log('Estado de inicio de sesión guardado en localStorage:', 'true');
+    setIsLogged(true); 
     } catch (error) {
-      // Maneja los errores de inicio de sesión con Google
+
       console.error('Error de inicio de sesión con Google:', error);
     }
   };
