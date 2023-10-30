@@ -69,8 +69,7 @@ ABACO</p>
     </div>
   )
 }
-
-const Navbar = () => {
+export const Navbar = () => {
   const activeStyle = "bg-amarillo text-white rounded-r-full w-60 h-8"; // Fondo de color verde (#d2de38)
   
 return (
@@ -128,5 +127,3 @@ return (
   
 );
 };
-
-export { Navbar };
