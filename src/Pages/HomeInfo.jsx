@@ -1,5 +1,6 @@
-import { Barrasuperior } from "../Components/Navbar/Index";
-import { Navbar } from "../Components/Navbar/Index";
+// import { Barrasuperior } from "../Components/Navbar/Index";
+// import { Navbar } from "../Components/Navbar/Index";
+import { Barrasuperior, Navbar } from "../Components/Navbar/Index";
 import Group from "../assets/Group.png";
 
 export function HomeInfo() {
