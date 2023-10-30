@@ -16,41 +16,37 @@ export function PdfView() {
   const [selectedOption, setSelectedOption] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const params = useParams();
+  const usuarioRol = localStorage.getItem('usuarioRol');
 
   const showPDF = (pdfBlob) => {
     setPdfData(URL.createObjectURL(pdfBlob));
   };
-  const rolUsuariologistica = "R_Logistica";
-  const rolUsuarioCotabilidad = "R_Contabilidad";
-  const rolUsuarioRevisorFiscal = "R_Fiscal";
-  const aceptar = "aceptar";
-  const identificadorDocumento = 10;
-  const rechazar = "rechazar";
+  const aceptar = "SI";
+  const rechazar = "NO";
 
   function cambiarEstadoDocumento(
     nuevoEstado,
-    identificadorDocumento,
     rolDelUsuario
   ) {
     if (typeof params.certificados_consecutivo !== "undefined") {
-      if (rolDelUsuario == rolUsuariologistica) {
+      if (rolDelUsuario == "Logistica") {
         modificarEstadoCertificadoLogistica(
           nuevoEstado,
-          identificadorDocumento
+          params.certificados_consecutivo
         );
-      } else if (rolDelUsuario == rolUsuarioCotabilidad) {
+      } else if (rolDelUsuario == "Contabilidad") {
         modificarEstadoCertificadoContabilidad(
           nuevoEstado,
-          identificadorDocumento
+          params.certificados_consecutivo
         );
-      } else if (rolDelUsuario == rolUsuarioRevisorFiscal) {
+      } else if (rolDelUsuario == "Fiscal") {
         modificarEstadoCertificadoRevisorFiscal(
           nuevoEstado,
-          identificadorDocumento
+          params.certificados_consecutivo
         );
       }
     } else if (typeof params.constancias_consecutivo !== "undefined") {
-      modificarEstadoConstanciaLogistica(nuevoEstado, identificadorDocumento);
+      modificarEstadoConstanciaLogistica(nuevoEstado, params.constancias_consecutivo);
     }
         setIsPopupOpen(true); // Abre el PopUp al cambiar el estado del documento
   
@@ -97,8 +93,7 @@ export function PdfView() {
               onClick={() =>
                 cambiarEstadoDocumento(
                   aceptar,
-                  identificadorDocumento,
-                  rolUsuariologistica,
+                  usuarioRol,
                 )
               }
               text="Aceptar"
@@ -111,8 +106,7 @@ export function PdfView() {
               onClick={() =>
                 cambiarEstadoDocumento(
                   rechazar,
-                  identificadorDocumento,
-                  rolUsuariologistica
+                  usuarioRol
                 )
               }
               text="Rechazar"

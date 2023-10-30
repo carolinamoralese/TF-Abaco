@@ -10,6 +10,7 @@ export function Records() {
   const [selectedOption, setSelectedOption] = useState("");
   const [documentos, setDocumentos] = useState([]);
   const [documentosFiltrados, setDocumentosFiltrados] = useState([]);
+  const usuarioRol = localStorage.getItem('usuarioRol');
   const propiedadEmpresa = "Empresa";
   const rolUsuariologistica = "R_Logistica";
   const rolUsuarioCotabilidad = "R_Contabilidad";
@@ -116,7 +117,7 @@ export function Records() {
     let promesaDocumentosFiltrados;
     promesaDocumentosFiltrados = filtrarDocumentos(
       documentos,
-      rolUsuariologistica,
+      usuarioRol,
       estadoDocumento
     );
     promesaDocumentosFiltrados.then((documentosFiltrados) =>

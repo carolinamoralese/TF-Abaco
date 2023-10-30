@@ -9,6 +9,7 @@ export function Certificate() {
   const [selectedOption, setSelectedOption] = useState("");
   const [documentos, setDocumentos] = useState([]);
   const [documentosFiltrados, setDocumentosFiltrados] = useState([]);
+  const usuarioRol = localStorage.getItem('usuarioRol');
   const propiedadEmpresa = "EMPRESA ";
   const rolUsuariologistica = "R_Logistica";
   const rolUsuarioCotabilidad = "R_Contabilidad";
@@ -31,15 +32,16 @@ export function Certificate() {
       documentosFiltrados = documentos.filter(
         (documento) => !["#N/A", ""].includes(documento[propiedadEmpresa])
       );
+      console.log(rolUsuario,9999)
 
-      if (rolUsuario == rolUsuariologistica) {
+      if (rolUsuario == "Logistica") {
         if (estado == "Pendientes") {
           documentosFiltrados = documentosFiltrados.filter(
-            (documento) => documento[rolUsuario] === ""
+            (documento) => documento[rolUsuariologistica] === ""
           );
         } else if (estado == "Aceptados") {
           documentosFiltrados = documentosFiltrados.filter(
-            (documento) => documento[rolUsuario].toUpperCase() === "SI"
+            (documento) => documento[rolUsuariologistica].toUpperCase() === "SI"
           );
         } else if (estado == "Firmados") {
           documentosFiltrados = documentosFiltrados.filter(
@@ -58,7 +60,7 @@ export function Certificate() {
         }
       }
 
-      if (rolUsuario == rolUsuarioCotabilidad) {
+      if (rolUsuario == "Contabilidad") {
         if (estado == "Pendientes") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) =>
@@ -88,7 +90,7 @@ export function Certificate() {
         }
       }
 
-      if (rolUsuario == rolUsuarioRevisorFiscal) {
+      if (rolUsuario == "Fiscal") {
         if (estado == "Pendientes") {
           documentosFiltrados = documentosFiltrados.filter(
             (documento) =>
@@ -128,7 +130,7 @@ export function Certificate() {
     let promesaDocumentosFiltrados;
     promesaDocumentosFiltrados = filtrarDocumentos(
       documentos,
-      rolUsuarioRevisorFiscal,
+      usuarioRol,
       estadoDocumento
     );
     promesaDocumentosFiltrados.then((documentosFiltrados) =>

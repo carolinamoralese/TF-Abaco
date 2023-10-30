@@ -20,7 +20,7 @@ export const  Barrasuperior = () => {
         console.log('Cierre de sesión exitoso');
         // Elimina los datos del usuario del localStorage en el cierre de sesión
         localStorage.removeItem('userEmail');
-        localStorage.removeItem('userRole');
+        localStorage.removeItem('usuarioRol');
       })
       .catch((error) => {
         console.error('Error al cerrar sesión', error);
@@ -35,6 +35,7 @@ export const  Barrasuperior = () => {
       let usuarioLogueado = usuarios.filter(usuario => usuario.Correo === userEmail)
       setUsuarioCorreo(usuarioLogueado[0].Correo)
       setUsuarioRol(usuarioLogueado[0].DescripcionRol)
+      localStorage.setItem('usuarioRol', usuarioLogueado[0].DescripcionRol);
     })
     .catch((error) => {
       console.error(error);
