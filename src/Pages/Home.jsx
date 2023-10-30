@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { Barrasuperior } from "../Components/Navbar/index";
-import { Navbar } from "../Components/Navbar/index";
+import { Barrasuperior } from "../Components/Navbar/Index";
+import { Navbar } from "../Components/Navbar/Index";
 import Group from "../assets/Group.png";
 
 export function Home() {
