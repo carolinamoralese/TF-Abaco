@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 // import pdfMake from "pdfmake";
 import * as pdfMake from "pdfmake/build/pdfmake";
-import * as pdfFonts from "pdfmake/build/vfs_fonts";
+// import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import 'pdfmake/build/vfs_fonts';
 import PropTypes from "prop-types";
 import htmlToPdfmake from "html-to-pdfmake";
@@ -14,8 +14,9 @@ import { obtenerCertificados } from "../servicios/servicios";
 import { obtenerConstancias } from "../servicios/servicios";
 import { obtenerDetalleFactura } from "../servicios/servicios";
 import { useParams } from "react-router";
+import pdfFonts from "./vfs_fonts";
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+pdfMake.vfs = pdfFonts
 
 function PdfGenerator({ onDataGenerated }) {
   const [data, setData] = useState(null);
