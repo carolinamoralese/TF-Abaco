@@ -1,10 +1,8 @@
 <h1>
   <img src="src/assets/logocolor.png" alt="ABACO Logo" width="200" height="200" align="left">
 <br>
-<br>
   ABACO
 </h1>
-<br>
 <br>
 <br>
 <br>
