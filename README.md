@@ -1,6 +1,7 @@
 # ABACO
 
 ![ABACO Logo](src/assets/logocolor.png)
+width="100" height="100" align="left"
 
 ## Índice
 
@@ -9,9 +10,9 @@
 3. [Tecnologías Utilizadas](#tecnologias-utilizadas)
 4. [Solicitud de ABACO](#solicitud-de-abaco)
 5. [Uso](#uso)
-6. [Licencia](#licencia)
-7. [Contacto](#contacto)
-8. [Proyecto Desplegado](#proyecto-desplegado)
+6. [Proyecto Desplegado](#proyecto-desplegado)
+7. [Licencia](#licencia)
+8. [Contacto](#contacto)
 
 ## Descripción <a name="descripcion"></a>
 
@@ -45,6 +46,10 @@ Para ejecutar el proyecto en tu entorno local, sigue estos pasos:
 3. Configura tus credenciales de Firebase.
 4. Ejecuta la aplicación: `npm start`
 
+## Proyecto Desplegado <a name="proyecto-desplegado"></a>
+
+El proyecto ABACO está desplegado y accesible en [https://abaco-99297.web.app/](https://abaco-99297.web.app/).
+
 ## Licencia <a name="licencia"></a>
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para obtener más detalles.
@@ -52,9 +57,5 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 ## Contacto <a name="contacto"></a>
 
 Si tienes alguna pregunta o comentario sobre ABACO, no dudes en ponerte en contacto con nosotros en [vet.nat.c@gmail.com](mailto:vet.nat.c@gmail.com).
-
-## Proyecto Desplegado <a name="proyecto-desplegado"></a>
-
-El proyecto ABACO está desplegado y accesible en [https://abaco-99297.web.app/](https://abaco-99297.web.app/).
 
 ¡Gracias por tu interés en ABACO!
