@@ -40,7 +40,7 @@ ABACO es una plataforma web que se enfoca en la autenticación de usuarios, la g
 
 ## Solicitud de ABACO <a name="solicitud-de-abaco"></a>
 
-Este proyecto fue solicitado por la empresa ABACO como parte del Talent Fest Latam 2023. La empresa ABACO buscaba una solución para la autenticación de usuarios y la generación de documentos PDF personalizados con funcionalidades de gestión y que se pudiera añadir la firma al documento.
+Este proyecto fue creado por Giselle Cifuentes [GitHub](https://github.com/NatSama2), Tamara Avilés [GitHub](https://github.com/Tamarunghi) y Carolina Morales [GitHub](https://github.com/carolinamoralese) como parte del Talent Fest Latam 2023, ademas el diseño de la plataforma fue realizado por las diseñadoras UX Patricia Flores y Miriam Martinez. La empresa ABACO buscaba una solución para la autenticación de usuarios y la generación de documentos PDF personalizados con funcionalidades de gestión y que se pudiera añadir la firma al documento.
 
 ## Uso <a name="uso"></a>
 
