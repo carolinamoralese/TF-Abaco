@@ -1,9 +1,9 @@
 # ABACO
 
-![ABACO Logo](src/assets/logocolor.png)
-width="100" height="100" align="left"
+<img src="src/assets/logocolor.png" alt="ABACO Logo" width="100" height="100" align="left">
 
 ## Índice
+
 
 1. [Descripción](#descripcion)
 2. [Características Clave](#caracteristicas-clave)
