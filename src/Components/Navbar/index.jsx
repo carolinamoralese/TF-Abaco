@@ -1,23 +1,20 @@
 import { auth } from '../../firebase'
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import logoColor from "../../assets/logocolor.png";
 import cosecha from "../../assets/EDITABL-PLATAFORMA-10.png";
 import hoja from "../../assets/hoja.png";
-import { obtenerUsuarios } from '../../servicios/servicios';
 import './index.css'
 
 export const  Barrasuperior = () => {
  
   const userEmail = localStorage.getItem('userEmail');
-  const [usuarioCorreo, setUsuarioCorreo] = useState("")
-  const [usuarioRol, setUsuarioRol] = useState("")
+  const userRol = localStorage.getItem('usuarioRol');
 
   const handleLogout = () => {
     auth
       .signOut()
       .then(() => {
-        // Elimina los datos del usuario del localStorage en el cierre de sesión
         localStorage.removeItem('userEmail');
         localStorage.removeItem('usuarioRol');
       })
@@ -26,27 +23,10 @@ export const  Barrasuperior = () => {
       });
   };
 
-
-
-  useEffect(() => {
-    obtenerUsuarios()
-    .then((usuarios) => {
-      let usuarioLogueado = usuarios.filter(usuario => usuario.Correo === userEmail)
-      setUsuarioCorreo(usuarioLogueado[0].Correo)
-      setUsuarioRol(usuarioLogueado[0].DescripcionRol)
-      localStorage.setItem('usuarioRol', usuarioLogueado[0].DescripcionRol);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }, []);
-
-
-
+  
   return (
     <div className="barrasuperior">
       <img className="cosecha" src={cosecha} alt="LogoCosecha" />
-      {/* <div className="menú--lateral" /> */}
       <div className="texto--plataforma--logo">
       <img className="logo-color" src={logoColor} alt="LogoColor" />
         <div className="barra--lateral--texto--abaco">
@@ -61,8 +41,8 @@ ABACO</p>
           </div>
         </div>
         <div className="nombre--tipodeusuario">
-          <p className="text-4">Bienvenido, {usuarioCorreo}</p>
-          <p className="text-4">{usuarioRol}</p>
+          <p className="text-4">Bienvenido, {userEmail}</p>
+          <p className="text-4">{userRol}</p>
           <button onClick={handleLogout}>Cerrar Sesión</button>
         </div>
       </div>
@@ -70,7 +50,7 @@ ABACO</p>
   )
 }
 export const Navbar = () => {
-  const activeStyle = "bg-amarillo text-white rounded-r-full w-60 h-8"; // Fondo de color verde (#d2de38)
+  const activeStyle = "bg-amarillo text-white rounded-r-full w-60 h-8"; 
   
 return (
 <nav className="fixed left-0 mt-0 w-72 h-[90%] shadow-xl space-y-12">

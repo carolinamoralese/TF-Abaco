@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
-// import pdfMake from "pdfmake";
+import { useEffect } from "react";
 import * as pdfMake from "pdfmake/build/pdfmake";
-// import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import 'pdfmake/build/vfs_fonts';
 import PropTypes from "prop-types";
 import htmlToPdfmake from "html-to-pdfmake";
@@ -14,13 +12,12 @@ import { obtenerCertificados } from "../servicios/servicios";
 import { obtenerConstancias } from "../servicios/servicios";
 import { obtenerDetalleFactura } from "../servicios/servicios";
 import { useParams } from "react-router";
+import { VARIABLES_ENTORNO } from "../../env";
 import pdfFonts from "./vfs_fonts";
 
 pdfMake.vfs = pdfFonts
 
 function PdfGenerator({ onDataGenerated }) {
-  const [data, setData] = useState(null);
-  //const [itemsFactura, setItemsFactura] = useState([]);
 
   const params = useParams();
   const rolUsuariologistica = "R_Logistica";
@@ -281,20 +278,18 @@ function PdfGenerator({ onDataGenerated }) {
     const fetchData = async () => {
       try {
         if (typeof params.certificados_consecutivo !== "undefined") {
-          const response1 = await fetch(
-            "https://script.google.com/macros/s/AKfycbwz3FM2ZsBFfNvIj8uZ8Gr4e6WpFyV4i3IrM5QryPFpBTplWqmagkCw03m1LWUc-f1m/exec",
-            {
-              method: "POST",
-              body: "authKey=zllLcfI6b1xwqj5",
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-              },
-            }
-          );
-          if (!response1.ok) {
-            throw new Error("Error en la solicitud 1");
+          let opciones = {
+            method:"POST"
           }
-          const jsonData = await response1.json();
+          let parametros = new URLSearchParams({
+            authKey: VARIABLES_ENTORNO.REACT_APP_AUTHKEY_CERTIFICADOS_INFORMACION
+          })
+
+          const respuestaDatos = await fetch(VARIABLES_ENTORNO.REACT_APP_URL_OBTENER_CERTIFICADOS_INFORMACION+"?"+parametros,opciones)
+          if (!respuestaDatos.ok) {
+                 throw new Error("Error en la solicitud");
+              }
+          const jsonData = await respuestaDatos.json();
 
           const documentos = await obtenerCertificados();
           const documento = documentos.find(
@@ -310,20 +305,18 @@ function PdfGenerator({ onDataGenerated }) {
 
           generatePDF(jsonData, documento, "certificado", items);
         } else if (typeof params.constancias_consecutivo !== "undefined") {
-          const response2 = await fetch(
-            "https://script.google.com/macros/s/AKfycbxBXQw5wB747NT-LwW_1Zskb0cL0oi7QPL2V45iB4i8fUMh9h8ldD6D5ExVnZMHqScD/exec",
-            {
-              method: "POST",
-              body: "authKey=L9zewK9EBh6mvWZ",
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-              },
-            }
-          );
-          if (!response2.ok) {
-            throw new Error("Error en la solicitud 2");
+
+          let opciones = {
+            method:"POST"
           }
-          const jsonData = await response2.json();
+          let parametros = new URLSearchParams({
+            authKey: VARIABLES_ENTORNO.REACT_APP_AUTHKEY_CONSTANCIAS_INFORMACION
+          })
+          const respuestaDatos = await fetch(VARIABLES_ENTORNO.REACT_APP_URL_OBTENER_CONSTANCIAS_INFORMACION+"?"+parametros,opciones)
+          if (!respuestaDatos.ok) {
+                 throw new Error("Error en la solicitud ");
+              }
+          const jsonData = await respuestaDatos.json();
 
           const documentos = await obtenerConstancias();
           const documento = documentos.find(
