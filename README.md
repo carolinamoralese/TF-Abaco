@@ -59,8 +59,4 @@ El proyecto ABACO está desplegado y accesible en [https://abaco-99297.web.app/]
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para obtener más detalles.
 
-## Contacto <a name="contacto"></a>
-
-Si tienes alguna pregunta o comentario sobre ABACO, no dudes en ponerte en contacto con nosotros en [vet.nat.c@gmail.com](mailto:vet.nat.c@gmail.com).
-
 ¡Gracias por tu interés en ABACO!
